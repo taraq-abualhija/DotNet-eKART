@@ -1,0 +1,40 @@
+﻿@page
+@model X_HIJA_SYSTEM_RAZORpage.Pages.Category.IndexModel
+
+<div class="container">
+
+    <div class="row p-2 d-flex align-items-center">
+        <div class="col-6 text-start">
+            <h2>Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="/category/create" class="btn btn-primary"><i class="bi bi-plus"></i> Create New Category</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped w-100">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Display Order </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var list in Model.categoryys.OrderBy(u => u.DisplayOrder))
+            {
+                <tr>
+                    <td>@list.CatName</td>
+                    <td>@list.DisplayOrder </td>
+                    <td class="w-25">
+                        <div class="w-75 btn-group " role="group">
+                            <a asp-page="/category/edit" asp-route-id="@list.CatID" class="btn btn-primary me-1"><i class="bi bi-pencil-fill "></i>Edit</a>
+                            <a asp-page="/category/delete" asp-route-id="@list.CatID" class="btn btn-danger"><i class="bi bi-trash">Delete</i></a>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
